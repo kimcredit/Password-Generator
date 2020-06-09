@@ -21,13 +21,13 @@ function generatePassword () {
         console.log(pasLength);
 
     if (pasLength > 128 || pasLength < 8) {
-        pasLength = false;
-        alert ("Password length must be between 8 and 128");   
+        alert ("Password length must be between 8 and 128");  
+        return false; 
     }
 
-    if (!pasLength){
-        return ("Your Secure Password");
-    }
+    // if (!pasLength){
+    //     return ("Your Secure Password");
+    // }
     
     //Only runs remaining user selections if user chooses number within the desired range
     else {
@@ -66,9 +66,12 @@ function generatePassword () {
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
-  var passwordText = document.querySelector("#password");
   
-  passwordText.value = password;
+  if (typeof password === "string") {
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
+  }
+  
 }
 
 // Add event listener to generate button
